@@ -28,12 +28,10 @@ public class HomepageController {
 	}
 
 	@GetMapping
-	public String doGet(Model model, @RequestParam("expenses") Optional<List<Expense>> expensesFromFilter) {
-		if (!expensesFromFilter.isPresent()) {
-			List<Expense> expenses = expenseRepository.findAll();
-			model.addAttribute("expenses", expenses);
-			model.addAttribute("totalExpenses", expenses.stream().mapToDouble(expense -> expense.getAmount()).sum());
-		}
+	public String doGet(Model model) {
+		List<Expense> expenses = expenseRepository.findAll();
+		model.addAttribute("expenses", expenses);
+		model.addAttribute("totalExpenses", "Total expenses: " + expenses.stream().mapToDouble(expense -> expense.getAmount()).sum());
 		model.addAttribute("expense", new Expense());
 		return "homepage";
 	}

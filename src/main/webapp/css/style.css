@@ -1,0 +1,160 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+header {
+	background: #30cc74;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	padding: 2vh 0;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+	color: white;
+	font-weight: bold;
+	margin-bottom: 2vh;
+}
+
+header h1 {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.01);
+}
+
+#search {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 50vw;
+	padding: 2vh 2vw;
+	margin: 0 auto;
+}
+
+#search #saveTaskForm {
+	display: flex;
+	flex-direction: column;
+}
+
+#search h1, #history {
+	width: 25vw;
+	color: rgba(30, 31, 30, 0.85);
+	margin: 1vh auto 5vh;
+	padding-bottom: 1.5vh;
+	border-bottom: 1px solid rgba(25, 50, 35, 0.8);
+}
+
+#search #saveTaskForm label {
+	margin: 0 auto 1vh;
+	width: 25rem;
+	color: rgba(15, 10, 12, 0.75);
+	font-weight: bold;
+}
+
+#search #saveTaskForm input {
+	margin-bottom: 3vh;
+	border: none;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	text-align: center;
+	padding: .75vh 2vw;
+	transition: .25s ease-in-out;
+	border-radius: .5rem;
+	outline: none;
+}
+
+.button {
+	width: 10vw;
+	padding: 2vh 1vw;
+	background: #fff;
+	border-radius: 1.5rem;
+	margin: 0 auto;
+	font-size: 1.1rem;
+	border: none;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	transition: all .1s cubic-bezier(.4, 0, .2, 1);
+	cursor: pointer;
+	color: rgba(15, 10, 12, 0.75);
+	font-weight: bold;
+	text-decoration: none #0d172a solid;
+	text-decoration-thickness: auto;
+	transition: all .1s cubic-bezier(.4, 0, .2, 1);
+}
+
+.button:hover {
+	background: #1e293b;
+	color: #fff;
+}
+
+#expenses #total-expenses {
+	width: 25vw;
+	font-size: 1.1rem;
+	font-weight: bold;
+	color: rgba(0, 5, 7, 0.85);
+	box-shadow: 0x 0x 10px rgba(0, 0, 0, 1);
+	padding-bottom: .5vh;
+	margin: 0 auto 2vh;
+	padding-bottom: .5vh;
+}
+
+#expenses form {
+	width: 25vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 2vh auto;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	border-radius: 1.25rem;
+	padding: 2vh 2vw;
+}
+
+#expenses form .labels, #expenses form .inputs, #expenses form .action-buttons
+	{
+	width: 100%;
+	text-align: center;
+	display: grid;
+	grid-template-columns: 40% 40%;
+	margin-bottom: 2vh;
+	gap: 2vw;
+	margin-bottom: 2vh;
+}
+
+#expenses form .labels {
+	margin-bottom: 1vh;
+}
+
+#expenses form .labels label {
+	width: 10vw;
+	color: rgba(5, 5, 10, 0.8);
+	margin-left: .25vw;
+	font-size: 1.1rem;
+}
+
+#expenses form .inputs input {
+	width: 10vw;
+	margin-bottom: 3vh;
+	border: none;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	text-align: center;
+	padding: .75vh 2vw;
+	transition: .25s ease-in-out;
+	border-radius: .5rem;
+	outline: none;
+	margin-bottom: 1vh;
+	margin-bottom: 3vh;
+}
+
+#expenses form p {
+	width: 100%;
+	margin: 0 0 3vh;
+	font-size: 1.1rem;
+	text-align: center;
+}
+
+#expenses form .action-buttons {
+	justify-content: center;
+}
+
+#expenses form .action-buttons .button {
+	width: 8vw;
+	font-size: 1rem;
+	font-weight: 600;
+	padding: 1.5vh 0;
+}
