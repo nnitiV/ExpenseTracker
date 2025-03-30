@@ -20,6 +20,12 @@ header h1 {
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.01);
 }
 
+#divisor {
+	width: 25vw;
+	border: 1px solid black;
+	margin: 4vh auto ;
+}
+
 #search {
 	display: flex;
 	align-items: center;
@@ -58,6 +64,62 @@ header h1 {
 	transition: .25s ease-in-out;
 	border-radius: .5rem;
 	outline: none;
+}
+
+#filters form {
+	width: 25vw;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+	margin-top: 2vh;
+}
+
+#filters form #inputs {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	column-gap: 1vw;
+	gap: 1.5vh;
+	margin-bottom: 2vh;
+}
+
+#filters form #inputs label {
+	width: 25vw;
+	font-size: 1.1rem;
+	font-weight: bold;
+	color: rgba(0, 5, 7, 0.85);
+	box-shadow: 0x 0x 10px rgba(0, 0, 0, 1);
+	padding-bottom: .5vh;
+	padding-bottom: .5vh;
+}
+ 
+#filters form #inputs input, #filters form #action-buttons a {
+	margin-bottom: 1vh;
+	border: none;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+	text-align: center;
+	transition: .25s ease-in-out;
+	border-radius: .5rem;
+	padding: 1vh;
+	outline: none;
+}
+
+#filters form #action-buttons a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	border-radius: 1.5rem;
+	height: 6vh;
+}
+
+#filters form input[type="submit"] {
+	font-size: 1.1rem;
+	margin-bottom: 7vh;
+}
+
+#filters form #action-buttons {
+	display: grid;
+	grid-template-columns: 50% 50%;
 }
 
 .button {

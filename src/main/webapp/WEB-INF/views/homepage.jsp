@@ -25,16 +25,21 @@
 			<form:input path="amount" />
 			<input type="submit" value="Save" class="button" />
 		</form:form>
-		<!-- <div id="filters">
+		<hr id="divisor"/>
+		<div id="filters">
 			<form action="/filter_tasks" method="POST">
-				<input type="number" min="1" max="12" value="1" name="numberOfMonth" />
-				<input type="submit" value="filter">
+				<div id="inputs">
+					<label for="numberOfMonth">Expenses by month</label> 
+					<label for="month">Total by month</label>
+					<input type="number" min="0" max="12" value="${numberOfMonth}" name="numberOfMonth" /> 
+					<input type="number" min="0" max="12" value="${totalByMonth}" name="totalByMonth" /> 
+				</div>
+				<div id="action-buttons">
+					<input type="submit" value="Filter" class="button"> 
+					<a href="/clear" class="button">Clear filter</a>
+				</div>
 			</form>
-			<form action="/get_total_by_month" " method="POST">
-				<input type="number" min="1" max="12" value="1" name="month" /> <input
-					type="submit" value="Find total">
-			</form>
-		</div>-->
+		</div>
 	</div>
 	<h1 id="history">History</h1>
 	<div id="expenses">

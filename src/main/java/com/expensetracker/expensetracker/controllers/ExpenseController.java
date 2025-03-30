@@ -1,35 +1,43 @@
 package com.expensetracker.expensetracker.controllers;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
-import org.eclipse.tags.shaded.org.apache.bcel.generic.NEW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.expensetracker.expensetracker.ExpensetrackerApplication;
+import com.expensetracker.expensetracker.SecurityConfiguration;
 import com.expensetracker.expensetracker.entities.Expense;
 import com.expensetracker.expensetracker.repositories.ExpenseRepository;
+
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ExpenseController {
 
+	private final SecurityConfiguration securityConfiguration;
+
 	private final ExpensetrackerApplication expensetrackerApplication;
-	private static final String[] monthNames = { "January", "February", "March", "April", "May", "June", "July",
+	private static final String[] MONTH_NAME = { "January", "February", "March", "April", "May", "June", "July",
 			"August", "September", "October", "November", "December" };
 
 	@Autowired
 	private ExpenseRepository expenseRepository;
 
-	ExpenseController(ExpensetrackerApplication expensetrackerApplication) {
+	ExpenseController(ExpensetrackerApplication expensetrackerApplication,
+			SecurityConfiguration securityConfiguration) {
 		this.expensetrackerApplication = expensetrackerApplication;
+		this.securityConfiguration = securityConfiguration;
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST)
@@ -51,22 +59,28 @@ public class ExpenseController {
 	}
 
 	@RequestMapping("/filter_tasks")
-	public String filterTasks(@RequestParam("numberOfMonth") int numberofMonth, Model model) {
-		List<Expense> expenses = expenseRepository.findAll();
-		expenses = expenses.stream().filter(expense -> expense.getDateOfEvent().getMonthValue() == numberofMonth)
-				.toList();
-		model.addAttribute("expenses", expenses);
-		model.addAttribute("expense", new Expense());
-		return "homepage";
+	public String filterTasks(HttpSession session, 
+			@RequestParam Optional<Integer> numberOfMonth,
+			@RequestParam Optional<Integer> totalByMonth) {
+		if (totalByMonth.isEmpty()) {
+			session.setAttribute("totalByMonth", null);
+		} else {
+			session.setAttribute("totalByMonth", totalByMonth.get());
+		}
+
+		if (numberOfMonth.isPresent()) {
+			session.setAttribute("numberOfMonth", numberOfMonth.get());
+		} else {
+			session.setAttribute("numberOfMonth", null);
+		}
+		return "redirect:/";
 	}
 
-	@RequestMapping("/get_total_by_month")
-	public String getTotalByMonth(Model model, @RequestParam int month) {
-		List<Expense> expenses = expenseRepository.findAll();
-		model.addAttribute("expenses", expenses);
-		model.addAttribute("totalExpenses", "Total expenses from month " + monthNames[month-1] + ": " + expenses.stream().filter(expense -> expense.getDateOfEvent().getMonthValue() == month).toList().stream().mapToDouble(Expense::getAmount).sum());
-		model.addAttribute("expense", new Expense());
-		return "homepage";
+	@RequestMapping("/clear")
+	public String clearFilters(HttpSession session) {
+		session.setAttribute("totalByMonth", null);
+		session.setAttribute("numberOfMonth", null);
+		return "redirect:/";
 	}
 
 }
